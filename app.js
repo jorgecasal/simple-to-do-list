@@ -17,12 +17,27 @@ function addItem(e){
     const value = grocery.value;
     const id = Math.floor(new Date().getTime() * Math.random()).toString();
     if(value && !editFlag){
-
+        const element = document.createElement('article');
+        element.classList.add('grocery-item');
+        const attr = document.createAttribute('data-id');
+        attr.value = id;
+        element.setAttributeNode(attr);
+        element.innerHTML = '';
     }else if(value && editFlag){
-        alert.textContent = 'empty value';
-        alert.classList.add('alert-danger');
-    }else
+
+    }else{
+        displayAlert('Please enter value', 'danger')
+    }
 };
+
+function displayAlert(text, action){
+    alert.textContent = text;
+    alert.classList.add(`alert-${action}`);
+    setTimeout(()=>{
+        alert.textContent = '';
+        alert.classList.remove(`alert-${action}`);
+    }, 1500)
+}
 
 // ****** LOCAL STORAGE **********
 
