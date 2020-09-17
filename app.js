@@ -45,7 +45,10 @@ function displayAlert(text, action){
 };
 
 function setBackToDefault(){
-    console.log('setBackToDefault')
+    grocery.value = '';
+    editFlag = false;
+    editID = '';
+    submitBtn.textContent = 'submit';
 };
 
 function addToLocalStorage(id, value){
