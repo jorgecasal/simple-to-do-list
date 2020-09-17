@@ -22,7 +22,12 @@ function addItem(e){
         const attr = document.createAttribute('data-id');
         attr.value = id;
         element.setAttributeNode(attr);
-        element.innerHTML = '';
+        element.innerHTML = `<p class="title">${value}</p><div class="btn-container"><button type="button" class="edit-btn"><i class="fa fa-edit"></i></button><button type="button" class="delete-btn"><i class="fa fa-trash"></i></button></div>`;
+        list.appendChild(element);
+        displayAlert('item added', 'success');
+        container.classList.add("show-container");
+        addToLocalStorage(id, value);
+        setBackToDefault();
     }else if(value && editFlag){
 
     }else{
@@ -37,8 +42,14 @@ function displayAlert(text, action){
         alert.textContent = '';
         alert.classList.remove(`alert-${action}`);
     }, 1500)
-}
+};
 
-// ****** LOCAL STORAGE **********
+function setBackToDefault(){
+    console.log('setBackToDefault')
+};
+
+function addToLocalStorage(id, value){
+    console.log('addToLocalStorage')
+};
 
 // ****** SETUP ITEMS **********
