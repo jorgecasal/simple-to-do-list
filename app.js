@@ -61,7 +61,7 @@ function deleteItem(e){
     }
     displayAlert('item removed', 'success');
     setBackToDefault();
-    // removeFromLocalStorage(id)
+    removeFromLocalStorage(id)
 }
 
 function editItem(e){
@@ -81,7 +81,7 @@ function setBackToDefault(){
 };
 
 function clearItems(){
-    const items = document.querySelectorAll('grocery-item');
+    const items = document.querySelectorAll('.grocery-item');
     if(items.length > 0){
         items.forEach((i)=>{
             list.removeChild(i);
@@ -90,7 +90,7 @@ function clearItems(){
     container.classList.remove('show-container');
     displayAlert('the list is empty', 'success');
     setBackToDefault();
-    // localStorage.removeItem('list');
+    localStorage.removeItem('list');
 };
 
 function addToLocalStorage(id, value){
@@ -104,10 +104,10 @@ function addToLocalStorage(id, value){
 function removeFromLocalStorage(id){
     let items = getFromLocalStorage()
     items = items.filter((i)=>{
-        if(items.id !== id){
-            return item;
+        if(i.id !== id){
+            return i;
         }
-    })
+    });
     localStorage.setItem('list', JSON.stringify(items));
 };
 
