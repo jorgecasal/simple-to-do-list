@@ -51,7 +51,14 @@ function displayAlert(text, action){
 
 function deleteItem(e){
     const element = e.currentTarget.parentElement.parentElement
+    const id = element.dataset.id
     list.removeChild(element);
+    if(list.children.length === 0){
+        container.classList.remove('show-container');
+    }
+    displayAlert('item removed', 'success');
+    setBackToDefault();
+    // removeFromLocalStorage(id)
 }
 
 function editItem(){
@@ -80,6 +87,10 @@ function clearItems(){
 
 function addToLocalStorage(id, value){
     console.log('addToLocalStorage')
+};
+
+function removeFromLocalStorage(id){
+    console.log(object);
 };
 
 // ****** SETUP ITEMS **********
