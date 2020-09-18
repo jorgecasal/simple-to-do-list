@@ -11,6 +11,7 @@ let editFlag = false;
 let editID = '';
 
 form.addEventListener('submit', addItem);
+clearBtn.addEventListener('click', clearItems)
 
 function addItem(e){
     e.preventDefault();
@@ -23,6 +24,10 @@ function addItem(e){
         attr.value = id;
         element.setAttributeNode(attr);
         element.innerHTML = `<p class="title">${value}</p><div class="btn-container"><button type="button" class="edit-btn"><i class="fa fa-edit"></i></button><button type="button" class="delete-btn"><i class="fa fa-trash"></i></button></div>`;
+        const deleteBtn = element.querySelector('.delete-btn')
+        const editBtn = element.querySelector('.edit-btn')
+        deleteBtn.addEventListener('click', deleteItem)
+        editBtn.addEventListener('click', editItem)
         list.appendChild(element);
         displayAlert('item added', 'success');
         container.classList.add("show-container");
@@ -44,11 +49,33 @@ function displayAlert(text, action){
     }, 1500)
 };
 
+function deleteItem(e){
+    const element = e.currentTarget.parentElement.parentElement
+    list.removeChild(element);
+}
+
+function editItem(){
+    console.log('editItem');
+}
+
 function setBackToDefault(){
     grocery.value = '';
     editFlag = false;
     editID = '';
     submitBtn.textContent = 'submit';
+};
+
+function clearItems(){
+    const items = document.querySelectorAll('grocery-item');
+    if(items.length > 0){
+        items.forEach((i)=>{
+            list.removeChild(i);
+        });
+    }
+    container.classList.remove('show-container');
+    displayAlert('the list is empty', 'success');
+    setBackToDefault();
+    // localStorage.removeItem('list');
 };
 
 function addToLocalStorage(id, value){
