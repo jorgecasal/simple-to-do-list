@@ -1,9 +1,9 @@
 const alert = document.querySelector('.alert');
-const form = document.querySelector('.grocery-form');
-const grocery = document.getElementById('grocery');
+const form = document.querySelector('.toDo-form');
+const toDo = document.getElementById('toDo');
 const submitBtn = document.querySelector('.submit-btn');
-const container = document.querySelector('.grocery-container');
-const list = document.querySelector('.grocery-list');
+const container = document.querySelector('.toDo-container');
+const list = document.querySelector('.toDo-list');
 const clearBtn = document.querySelector('.clear-btn');
 
 let editElement;
@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', setupItems);
 
 function addItem(e){
     e.preventDefault();
-    const value = grocery.value;
+    const value = toDo.value;
     const id = Math.floor(new Date().getTime() * Math.random()).toString();
     if(value && !editFlag){
         createListItem(id, value);
@@ -58,21 +58,21 @@ function deleteItem(e){
 function editItem(e){
     const element = e.currentTarget.parentElement.parentElement;
     editElement = e.currentTarget.parentElement.previousElementSibling;
-    grocery.value = editElement.innerHTML;
+    toDo.value = editElement.innerHTML;
     editFlag = true;
     editID = element.dataset.id;
     submitBtn.textContent = 'edit';
 }
 
 function setBackToDefault(){
-    grocery.value = '';
+    toDo.value = '';
     editFlag = false;
     editID = '';
     submitBtn.textContent = 'submit';
 };
 
 function clearItems(){
-    const items = document.querySelectorAll('.grocery-item');
+    const items = document.querySelectorAll('.toDo-item');
     if(items.length > 0){
         items.forEach((i)=>{
             list.removeChild(i);
@@ -85,10 +85,10 @@ function clearItems(){
 };
 
 function addToLocalStorage(id, value){
-    const grocery = {id,value};
+    const toDo = {id,value};
     let items = getFromLocalStorage();
     console.log(items)
-    items.push(grocery);
+    items.push(toDo);
     localStorage.setItem('list', JSON.stringify(items));
 };
 
@@ -129,7 +129,7 @@ function setupItems (){
 
 function createListItem(id, value){
     const element = document.createElement('article');
-    element.classList.add('grocery-item');
+    element.classList.add('toDo-item');
     const attr = document.createAttribute('data-id');
     attr.value = id;
     element.setAttributeNode(attr);
