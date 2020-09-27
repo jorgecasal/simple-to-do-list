@@ -1,15 +1,4 @@
-/*
-=============== 
-Fonts
-===============
-*/
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
-
-/*
-=============== 
-Variables
-===============
-*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 :root {
   /* dark shades of primary color*/
@@ -67,7 +56,7 @@ Global Styles
   box-sizing: border-box;
 }
 body {
-  font-family: var(--ff-secondary);
+  font-family: 'Roboto', sans-serif;
   background: var(--clr-grey-10);
   color: var(--clr-grey-1);
   line-height: 1.5;
@@ -231,7 +220,7 @@ toDo List
   color: var(--clr-grey-5);
 }
 #toDo::placeholder {
-  font-family: var(--ff-secondary);
+  font-family: 'Roboto', sans-serif;
   color: var(--clr-grey-5);
 }
 .submit-btn {
